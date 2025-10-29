@@ -99,14 +99,18 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 3em;
-  animation: slideDown 1.2s ease-in-out;
+  font-size: 2.0em;      /* smaller for desktop */
+  font-weight: 700;
+  color: white;
+  text-align: center;
 }
 
 .hero-content p {
-  margin-top: 10px;
-  font-size: 1.2em;
-  animation: fadeIn 2s ease-in-out;
+  font-size: 1.0em;      /* smaller subtext */
+  color: #f0f0f0;
+  text-align: center;
+  max-width: 600px;
+  margin: 10px auto;
 }
 
 .btn {
@@ -2319,4 +2323,11 @@ body {
     font-size: 0.9rem;
   }
 }
-
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 1.6em;
+  }
+  .hero-content p {
+    font-size: 0.95em;
+  }
+}
