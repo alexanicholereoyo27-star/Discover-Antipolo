@@ -187,20 +187,20 @@ document.addEventListener("DOMContentLoaded", async () => {
           modal.innerHTML = `
               <div style="background: white; padding: 30px; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
                   <div style="text-align: center; margin-bottom: 20px;">
-                      <h2 style="color: #2c5530; margin: 0 0 10px 0;">🔐 Welcome Back</h2>
+                      <h2 style="color: #2c5530; margin: 0 0 10px 0;"> Welcome Back</h2>
                       <p style="color: #666; margin: 0;">Login to share your memories</p>
                   </div>
                   
                   <form id="loginForm">
                       <div style="margin-bottom: 15px;">
-                          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">📧 Email Address</label>
+                          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;"> Email Address</label>
                           <input type="email" id="loginEmail" required 
                                  style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; transition: all 0.3s ease;"
                                  placeholder="your@email.com">
                       </div>
                       
                       <div style="margin-bottom: 20px;">
-                          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">🔑 Password</label>
+                          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;"> Password</label>
                           <input type="password" id="loginPassword" required 
                                  style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; transition: all 0.3s ease;"
                                  placeholder="Enter your password">
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       
                       <button type="submit" id="loginSubmitBtn" 
                               style="width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 16px; background: linear-gradient(135deg, #4a7c59, #3a6b4a); color: white; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
-                          🚀 Login
+                           Login
                       </button>
                       
                       <div style="text-align: center; margin-top: 15px;">
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       
                       <button type="submit" id="signupSubmitBtn" 
                               style="width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 16px; background: linear-gradient(135deg, #4a7c59, #3a6b4a); color: white; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
-                          📝 Create Account
+                           Create Account
                       </button>
                       
                       <div style="text-align: center; margin-top: 15px;">
@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               } catch (error) {
                   showAuthMessage(`❌ ${error.message}`, 'error');
               } finally {
-                  submitBtn.textContent = '🚀 Login';
+                  submitBtn.textContent = ' Login';
                   submitBtn.disabled = false;
               }
           });
@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               } catch (error) {
                   showAuthMessage(`❌ ${error.message}`, 'error');
               } finally {
-                  submitBtn.textContent = '📝 Create Account';
+                  submitBtn.textContent = ' Create Account';
                   submitBtn.disabled = false;
               }
           });
@@ -407,10 +407,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           // 1. Location Dropdown
           const spotGroup = document.createElement('div');
           spotGroup.innerHTML = `
-              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">📍 Select Location</label>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;"> Select Location</label>
               <select id="spotSelect" required>
-                  <option value="">🎯 Choose a tourist spot...</option>
-                  <option value="Hinulugang Taktak">Hinulugang Taktak</option>
+                  <option value=""> Choose a tourist spot...</option>
+                  <option value=" ✅ Hinulugang Taktak"> ✅ Hinulugang Taktak</option>
                   <option value="Pinto Art Museum">Pinto Art Museum</option>
                   <option value="Mount Purro Nature Reserve">Mount Purro Nature Reserve</option>
                   <option value="PACEM Eco Park">PACEM Eco Park</option>
@@ -450,7 +450,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           // 3. Caption Input
           const captionGroup = document.createElement('div');
           captionGroup.innerHTML = `
-              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">💭 Write Caption</label>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;"> Write Caption</label>
               <textarea id="captionInput" placeholder="Share your experience at this location..." required 
                         style="width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Poppins', sans-serif; background: white; margin-bottom: 15px; transition: all 0.3s ease; resize: vertical; min-height: 80px;"></textarea>
           `;
@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const buttonGroup = document.createElement('div');
           buttonGroup.innerHTML = `
               <button type="submit" class="upload-btn" style="width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 18px; font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #4a7c59, #3a6b4a); color: white; cursor: pointer; transition: all 0.3s ease; font-weight: 600;">
-                  📤 Upload Memory
+                   Upload Memory
               </button>
           `;
           form.appendChild(buttonGroup);
@@ -630,7 +630,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               `;
               
               const loginBtn = document.createElement('button');
-              loginBtn.innerHTML = '🔐 Login to Upload Memories';
+              loginBtn.innerHTML = ' Login to Upload Memories';
               loginBtn.style.cssText = `
                   background: #4a7c59;
                   color: white;
@@ -685,14 +685,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       ✅ Welcome back!
                   </div>
                   <button id="logoutBtn" style="background: #c62828; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">
-                      🚪 Logout
+                       Logout
                   </button>
               `;
               document.getElementById('logoutBtn').addEventListener('click', handleLogout);
           } else {
               authStatus.innerHTML = `
                   <button id="loginBtn" style="background: #4a7c59; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s ease;">
-                      🔐 Login to Upload Memories
+                       Login to Upload Memories
                   </button>
               `;
               document.getElementById('loginBtn').addEventListener('click', openLoginModal);
@@ -742,7 +742,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   spotSection.style.cssText = "margin-bottom: 25px; background: white; padding: 12px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;";
                   
                   const spotTitle = document.createElement("h3");
-                  spotTitle.textContent = `📍 ${spotKey.replace(/_/g, ' ')}`;
+                  spotTitle.textContent = ` ${spotKey.replace(/_/g, ' ')}`;
                   spotTitle.style.cssText = "color: #2c5530; text-align: center; font-size: 15px; font-weight: bold; margin: 3px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #4a7c59;";
                   spotSection.appendChild(spotTitle);
                   
