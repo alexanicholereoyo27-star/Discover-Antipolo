@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Antipolo | Login</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ✨ Fix: hide form until Firebase finishes checking login state */
+    .login-container {
+      display: none;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    /* ✨ Improved only the login form textboxes & buttons */
+    #login-form input[type="email"],
+    #login-form input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    #login-form input[type="email"]:focus,
+    #login-form input[type="password"]:focus {
+      border-color: #2a9d8f;
+      box-shadow: 0 0 6px rgba(42, 157, 143, 0.25);
+    }
+
+    /* Login and Google buttons hover */
+    .btn {
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+
+    /* Google login button enhancement */
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: white;
+      color: #444;
+      font-weight: 500;
+      padding: 10px;
+    }
+
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .google-btn:hover {
+      background: #f5f5f5;
+    }
+
+    /* Loading text */
+    #loading {
+      text-align: center;
+      margin-top: 80px;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Discover <span>Antipolo</span></div>
+      
+      <!-- Hamburger Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">View Destination</a></li>
+        <li><a href="hospital.html">Hospitals Info</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="login.html" id="authlink" class="active">Login</a></li>
+      </ul>
+      
+      <!-- Mobile Overlay -->
+      <div class="mobile-overlay"></div>
+    </nav>
+  </header>
+
+  <!-- Loading text while Firebase checks -->
+  <div id="loading">Checking your login status...</div>
+
+  <section class="login-section">
+    <div class="login-container">
+      <h2>💚 HELLO!</h2>
+      <p class="login-subtitle">Sign in to rate, comment, and share your memories in Antipolo!</p>
+
+      <!-- Email / Password Login -->
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Enter your Gmail" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit" class="btn login-btn">Login</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <!-- Google Login -->
+      <button id="googleLogin" class="btn google-btn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Icon">
+        Sign in with Google
+      </button>
+
+      <p class="register-text">
+        Don't have an account? <a href="register.html">Create one</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Discover Antipolo | Secure Login System 💚</p>
+  </footer>
+
+  <!-- Main app navigation -->
+  <script src="js/app.js"></script>
+  
+  <!-- Firebase connection -->
+  <script type="module" src="js/firebase-init.js"></script>
+
+  <!-- Login logic -->
+  <script type="module" src="js/login.js"></script>
+
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+</body>
+</html>

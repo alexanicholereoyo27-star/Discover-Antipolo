@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Antipolo | Memories</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Discover <span>Antipolo</span></div>
+      
+      <!-- Hamburger Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">View Destination</a></li>
+        <li><a href="hospital.html">Hospitals Info</a></li>
+        <li><a href="memories.html" class="active">Memories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      
+      <!-- Mobile Overlay -->
+      <div class="mobile-overlay"></div>
+    </nav>
+  </header>
+
+  <section class="hero-bg">
+    <h2 class="page-title">📸 Share Your Antipolo Memories</h2>
+    <p class="page-subtitle">Choose a destination and upload your memorable photo from Antipolo!</p>
+  </section>
+
+  <section class="upload-section">
+    <div class="upload-box">
+      <h3>💾 Upload a Memory</h3>
+      <p>Select a destination, choose your photo, and add a short caption.</p>
+
+      <form id="uploadForm">
+        <select id="spotSelect" required>
+          <option value="">🎯 Select a Tourist Spot</option>
+          <option value="Hinulugang Taktak">Hinulugang Taktak</option>
+          <option value="Pinto Art Museum">Pinto Art Museum</option>
+          <option value="Mount Purro Nature Reserve">Mount Purro Nature Reserve</option>
+          <option value="PACEM Eco Park">PACEM Eco Park</option>
+          <option value="Casa Santa Museum">Casa Santa Museum</option>
+          <option value="Luljetta's Hanging Gardens">Luljetta's Hanging Gardens</option>
+          <option value="Mystical Cave">Mystical Cave</option>
+          <option value="Antipolo Cathedral">Antipolo Cathedral</option>
+          <option value="Cloud 9">Cloud 9</option>
+          <option value="Yellow Lantern Cafe">Yellow Lantern Café</option>
+        </select>
+
+        <input type="file" id="photoInput" accept="image/*" required />
+        <input type="text" id="captionInput" placeholder="Write a short caption..." required />
+        <button type="submit" class="btn upload-btn">Upload</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="memories-gallery">
+    <h3 class="gallery-title">🌄 Shared Memories by Destination</h3>
+    <div id="memoriesContainer">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Discover Antipolo | Cherish Every Moment 💚</p>
+  </footer>
+
+  <!-- Main app navigation -->
+  <script src="js/app.js"></script>
+  
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="js/memories.js"></script>
+</body>
+</html>

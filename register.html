@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Antipolo | Register</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Match login design */
+    .login-container {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    #register-form input[type="email"],
+    #register-form input[type="password"],
+    #register-form input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    #register-form input:focus {
+      border-color: #2a9d8f;
+      box-shadow: 0 0 6px rgba(42, 157, 143, 0.25);
+    }
+
+    .btn {
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: white;
+      color: #444;
+      font-weight: 500;
+      padding: 10px;
+    }
+
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .google-btn:hover {
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Discover <span>Antipolo</span></div>
+      
+      <!-- Hamburger Menu Button -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">View Destination</a></li>
+        <li><a href="hospital.html">Hospitals Info</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="login.html" id="authlink">Login</a></li>
+      </ul>
+      
+      <!-- Mobile Overlay -->
+      <div class="mobile-overlay"></div>
+    </nav>
+  </header>
+
+  <section class="login-section">
+    <div class="login-container">
+      <h2>💚 Create Account</h2>
+      <p class="login-subtitle">Join Discover Antipolo to share your experiences!</p>
+
+      <form id="register-form">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="email" id="email" placeholder="Enter your Gmail" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit" class="btn login-btn">Sign Up</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <button id="googleRegister" class="btn google-btn">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Icon">
+        Sign up with Google
+      </button>
+
+      <p class="register-text">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Discover Antipolo | Secure Registration System 💚</p>
+  </footer>
+
+  <!-- Main app navigation -->
+  <script src="js/app.js"></script>
+  
+  <!-- Firebase connection -->
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/register.js"></script>
+
+  <!-- ScrollReveal (same animation) -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('.login-container', {
+      duration: 800,
+      distance: '20px',
+      origin: 'bottom',
+      easing: 'ease-out',
+      reset: false
+    });
+  </script>
+</body>
+</html>
