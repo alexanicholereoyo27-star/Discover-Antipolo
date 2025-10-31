@@ -152,5 +152,36 @@
 
   <!-- ScrollReveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- 🔒 Legal Agreement Modal -->
+<div id="legalModal" class="legal-modal">
+  <div class="legal-content">
+    <h2>Terms of Use & Data Privacy Agreement</h2>
+    <p>
+      Welcome to <strong>Discover Antipolo City — Tourism & Heritage Guide Website</strong>.  
+      Before continuing, please take a moment to read and understand our 
+      <a href="privacy.html" target="_blank">Data Privacy Policy</a> and 
+      <a href="terms.html" target="_blank">Terms & Conditions</a>.
+    </p>
+
+    <p>
+      By proceeding, you acknowledge that you have read, understood, and agree to the 
+      processing of your personal data in accordance with the 
+      <strong>Data Privacy Act of 2012 (RA 10173)</strong>.  
+      Personal information (such as name, email, and uploaded photos) is collected solely 
+      for tourism engagement, educational purposes, and community sharing within the platform.
+    </p>
+
+    <div class="legal-checkbox">
+      <input type="checkbox" id="agreeCheck">
+      <label for="agreeCheck">I have read and agree to the Terms & Data Privacy Policy.</label>
+    </div>
+
+    <div class="legal-buttons">
+      <button id="agreeBtn" disabled>Proceed to Login</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -532,4 +532,23 @@ document.querySelectorAll('.post-spot-comment').forEach(btn => {
     }
   });
 });
+function openDirections(lat, lng) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
 
+        // ✅ Use backticks and proper Google Maps API parameters
+        const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${lat},${lng}&travelmode=driving`;
+
+        window.open(mapsUrl, "_blank");
+      },
+      () => {
+        alert("⚠️ Please allow location access to get directions from your current location.");
+      }
+    );
+  } else {
+    alert("Your browser does not support geolocation.");
+  }
+}

@@ -86,3 +86,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   });
 });
+// 🔒 Legal Agreement Modal Logic
+const legalModal = document.getElementById('legalModal');
+const agreeCheck = document.getElementById('agreeCheck');
+const agreeBtn = document.getElementById('agreeBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+
+// Show modal when the login page loads
+window.addEventListener('DOMContentLoaded', () => {
+  legalModal.style.display = 'flex';
+});
+
+// Enable Proceed button only when checkbox is ticked
+agreeCheck.addEventListener('change', () => {
+  agreeBtn.disabled = !agreeCheck.checked;
+});
+
+// Proceed to login
+agreeBtn.addEventListener('click', () => {
+  legalModal.style.display = 'none';
+});
+
+// Cancel and redirect to home
+cancelBtn.addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
