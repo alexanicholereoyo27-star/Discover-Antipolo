@@ -10,7 +10,7 @@
   
 
 </head>
-<body>
+<body class="destination-page">
   <header>
     <nav class="navbar">
       <div class="logo">Discover <span>Antipolo</span></div>
@@ -28,6 +28,7 @@
         <li><a href="destination.html" class="active">View Destination</a></li>
         <li><a href="hospital.html">Hospitals Info</a></li>
         <li><a href="memories.html">Memories</a></li>
+        <li><a href="events.html">Events</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
@@ -54,14 +55,23 @@
     <p class="photo-source-centered"> Source: Fun In The Philippines Website</p>
 
     <div class="spot-content">
-      <p><strong>💬 Description:</strong>  Hinulugang Taktak is a beautiful 21-meter waterfall in Antipolo that was restored and reopened to the public in 2015. It's a fun spot to visit with friends or family, offering exciting activities like crossing hanging bridges 🌉, climbing spider web platforms 🕸, and trying out the wall-climbing area 🧗🏻‍♂️. If you just want to relax, you can rent a cozy cottage for ₱500 a day and take a refreshing swim for only ₱50. It's a great place to enjoy nature and discover one of Rizal's most famous waterfalls! 🌊</p>
+      <p><strong>💬 Description:</strong>  Hinulugang Taktak is a beautiful 21-meter waterfall in Antipolo that was restored and reopened to the public in 2015. It's a fun spot to visit with friends or family, offering exciting activities like crossing hanging bridges, climbing spider web platforms, and trying out the wall-climbing area🌉. If you just want to relax, you can rent a cozy cottage for 500 pesos a day and take a refreshing swim for only 50 pesos. It's a great place to enjoy nature and discover one of Rizal's most famous waterfalls!🌊</p>
       <p><strong>📱 Mobile:</strong> <a href="tel:09067575100">0906 757 5100</a></p>
       <p><strong>⏰
      <span class="status-indicator" data-open="09:00" data-close="18:00">Checking...</span>
      <span class="hours-text">Tuesday – Sunday: 09:00 AM – 6:00 PM</span>
-     </p>
+    <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Hinulugang Taktak is a beautiful and clean tourist spot located at Taktak Road, Barangay Dela Paz, Antipolo City, Rizal. It is open Tuesday to Sunday, from nine in the morning to six in the evening.Hinulugang Taktak is a beautiful 21-meter waterfall in Antipolo that was restored and reopened to the public in 2015. It's a fun spot to visit with friends or family, offering exciting activities like crossing hanging bridges, climbing spider web platforms, and trying out the wall-climbing area. If you just want to relax, you can rent a cozy cottage for 500 pesos a day and take a refreshing swim for only 50 pesos. It's a great place to enjoy nature and discover one of Rizal's most famous waterfalls! You can call: 0906 757 5100 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
 
-    <button 
+   </p>
+
+    <button
       class="btn direction-btn" 
       onclick="openDirections(14.5946, 121.1677)">
       📍 Get Directions
@@ -70,10 +80,6 @@
 
     </div>
     
-  
-
-
-
       <div class="rating-section">
         <h4>⭐ Rate this Tourist Spot:</h4>
         <div class="stars spot-stars">
@@ -100,6 +106,7 @@
     </div>
 
     <button class="btn show-hospital-btn">🏥 Click here for Hospital Information</button>
+    
 
 
       <div class="hospital-container hidden">
@@ -113,52 +120,45 @@
             <span class="hours-text">⏰</span>
             <span class="status-indicator" data-open="0.00" data-close="24:00">Checking...</span>
           </div>
-        </div>
+       </div>
+        
          <p class="photo-source-centered"> Source: Clinica Antipolo Hospital & Wellness Center Official Website</p>
+      </div>
+      </section>
 
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list"></div>
-  </div>
-</div>
-    </div>
-  </section>
 
   <section class="spot-section" data-spot="Pinto Art Museum">
     <div class="spot-banner" style="background-image: url('images/pinto.jpg');">
       <div class="overlay"></div>
       <div class="spot-title">
         <h2>🎨 Pinto Art Museum</h2>
-        <p>📍 Sierra Madre St, Grand Heights Subdivision, Antipolo, 1870 Rizal</p>
+        <p>📍 Grand Heights Subdivision, 1 Sierra Madre St, Antipolo, 1870 Rizal</p>
       </div>
     </div>
     <p class="photo-source-centered"> Source: Tripadvisor Website</p>
 
     <div class="spot-content">
-      <p><strong>💬 Description:</strong> Founded in 2010 by Dr. Joven Cuanang, Pinto Art Museum is a must-visit destination in Antipolo 🏛️ that features a diverse collection of artworks, including paintings 🖼️, sculptures 🗿, installations 🧩, and mixed media pieces 🎭. The museum celebrates Filipino artists 🇵🇭 whose creations explore themes of modernism, spirituality, and history 🌅. Set within a peaceful two-hectare botanical garden 🌿🌺, its charming Santorini-inspired architecture 🏠💙 offers plenty of picture-perfect spots for your Instagram feed 📸✨.</p>
+      <p><strong>💬 Description:</strong> Founded in 2010 by Dr. Joven Cuanang, Pinto Art Museum is a must-visit destination in Antipolo that features a diverse collection of artworks, including paintings 🖼️, sculptures, installations, and mixed media pieces. The museum celebrates Filipino artists 🇵🇭 whose creations explore themes of modernism, spirituality, and history. Set within a peaceful two-hectare botanical garden 🌿, its charming Santorini-inspired architecture offers plenty of picture-perfect spots for your Instagram feed.</p>
       <p><strong>☎️ Hotline:</strong> <a href="tel:8697 1015">(02) 8697 1015</a></p>
       <p><strong>⏰
       <span class="status-indicator" data-open="09:00" data-close="18:00">Checking...</span>
      <span class="hours-text">Daily, 09:00 AM – 6:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Pinto Art Museum located at Grand Heights Subdivision, 1 Sierra Madre St, Antipolo, 1870 Rizal. It is open Daily, from nine in the morning to six in the evening. Pinto Art Museum Founded in 2010 by Dr. Joven Cuanang, Pinto Art Museum is a must-visit destination in Antipolo that features a diverse collection of artworks, including paintings, sculptures, installations, and mixed media pieces. The museum celebrates Filipino artists 🇵🇭 whose creations explore themes of modernism, spirituality, and history. Set within a peaceful two-hectare botanical garden, its charming Santorini-inspired architecture offers plenty of picture-perfect spots for your Instagram feed. You can call Hotline: (02) 8697 1015 for more information. Thank you!"> 
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+
+    <button
+      class="btn direction-btn" 
+      onclick="openDirections(14.580832, 121.164022)">
+      📍 Get Directions
+    </button>
+
     </div>
 
 
@@ -202,40 +202,16 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Clinica Antipolo Hospital & Wellness Center Official Website</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
         </div>
+      </section>
 
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this spot:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
 
   <section class="spot-section" data-spot="Mount Purro Nature Reserve">
     <div class="spot-banner" style="background-image: url('images/mountpurro.jpg');">
       <div class="overlay"></div>
       <div class="spot-title">
         <h2>🌿 Mount Purro Nature Reserve</h2>
-        <p>📍 Barangay Calawis, Antipolo, 1870 Rizal</p>
+        <p>📍 Purok 5, Barangay Calawis, Antipolo, 1870 Rizal</p>
       </div>
     </div>
     <p class="photo-source-centered"> Source: Mount Purro Nature Reserve Website</p>
@@ -246,6 +222,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="09:00" data-close="17:00">Checking...</span>
      <span class="hours-text">Monday-Friday: 09:00 AM – 05:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Mount Purro Nature Reserve, located at Purok 5, Barangay Calawis, Antipolo, 1870 Rizal. It is open Monday-Friday: 09:00 AM to 05:00 PM Mount Purro Nature Reserve is a hidden paradise at the foot of the Sierra Madre Mountains, perfect for anyone who loves nature and adventure! This family-run eco-park lets you enjoy the beauty of the outdoors with fun activities like hiking to scenic lagoons, ziplining, cozy campfires, and even cultural experiences with local tribes. Surrounded by lush forests and fresh mountain air, it's the ideal spot to relax, explore, and reconnect with nature—just a short trip away from the city! You can call 0949 398 1799 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.677458, 121.244022)">
+      📍 Get Directions
+    </button>
     </div>
       <div class="rating-section">
         <h4>⭐ Rate this Tourist Spot:</h4>
@@ -286,33 +277,9 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Rizal Provincial Hospital System Website</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
         </div>
+      </section>
 
-        <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
 
   <!-- Pacem Eco Park Section -->
   <section class="spot-section" data-spot="Jardin de Marimar">
@@ -320,7 +287,7 @@
       <div class="overlay"></div>
       <div class="spot-title">
         <h2>🌳 Jardin de Marimar</h2>
-        <p>📍 Buliran Rd,, Antipolo City, 1870 Rizal</p>
+        <p>📍 276-279 San Jose Ext, Antipolo, 1870 Rizal</p>
       </div>
     </div>
     <p class="photo-source-centered"> Source: Jardin de Marimar Website</p>
@@ -331,6 +298,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="10:00" data-close="18:00">Checking...</span>
      <span class="hours-text">Wednesday-Friday: 10:00 AM – 06:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Jardin de Marimar is located at San Jose Ext, Antipolo Rizal. It is open Wednesday-Friday: 10:00 AM – 06:00 PM Jardin de Marimar is a picturesque garden sanctuary located in the heart of Antipolo, offering a romantic and refreshing escape surrounded by nature. This charming events venue features vibrant flower gardens, elegant gazebos, and open-air spaces perfect for weddings, celebrations, and memorable gatherings. With its serene ambiance and breathtaking landscapes, Jardin de Marimar is the ideal place to celebrate life’s special moments in a beautiful natural setting. You can call  0917 863 5155 for more information, Thank you!">
+    🔊 Play
+  </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+
+     <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.59367, 121.17920)">
+      📍 Get Directions
+    </button>
     </div>
       
       <div class="rating-section">
@@ -372,33 +354,9 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Rizal Provincial Hospital System Official Page</p>
+      </div>
+      </section>
 
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
 
   <!-- Casa Santa Museum Section -->
   <section class="spot-section" data-spot="Casa Santa Museum">
@@ -409,7 +367,7 @@
         <p>📍 276 San Isidro, Antipolo, 1870 Rizal</p>
       </div>
     </div>
-    <p class="photo-source-centered">📸 Source: Department of Tourism Philippines</p>
+    <p class="photo-source-centered"> Source: Department of Tourism Philippines</p>
 
     <div class="spot-content">
       <p><strong>💬 Description:</strong> Casa Santa Museum is a unique and magical destination in Antipolo that's perfect for Christmas lovers all year round! 🎄 This special museum houses an incredible collection of Santa Claus figures, Christmas decorations, and holiday memorabilia from around the world. 🎅 With thousands of Santas in various forms and sizes, it's like stepping into a winter wonderland in the tropics. The museum offers a festive experience that will fill you with holiday cheer no matter what time of year you visit! ✨</p>
@@ -417,6 +375,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="10:00" data-close="16:00">Checking...</span>
      <span class="hours-text">Daily: 10:00 AM – 04:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Casa Santa Museum located at San Isidro, Antipolo, Rizal. It is open Daily: 10:00 AM – 04:00 PM. Casa Santa Museum is a unique and magical destination in Antipolo that's perfect for Christmas lovers all year round! This special museum houses an incredible collection of Santa Claus figures, Christmas decorations, and holiday memorabilia from around the world. With thousands of Santas in various forms and sizes, it's like stepping into a winter wonderland in the tropics. The museum offers a festive experience that will fill you with holiday cheer no matter what time of year you visit! You can call (02) 8584 3199 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+     
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.59356, 121.17925)">
+      📍 Get Directions
+    </button>
     </div>
 
       <div class="rating-section">
@@ -444,7 +417,7 @@
       </div>
     </div>
 
-  <button class="btn show-hospital-btn">🏥 Click here for Hospital Information</button>
+     <button class="btn show-hospital-btn">🏥 Click here for Hospital Information</button>
 
       <div class="hospital-container hidden">
         <div class="hospital-card">
@@ -458,40 +431,16 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Rixal Provincial Hospital System Official Page</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
         </div>
+      </section>
 
-        <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
 
   <!-- Luljetta's Hanging Gardens Section -->
-  <section class="spot-section" data-spot="Luljetta's Hanging Gardens">
+  <section class="spot-section" data-spot="Luljetta's Hanging Gardens and Spa">
     <div class="spot-banner" style="background-image: url('images/spa.jpg');">
       <div class="overlay"></div>
       <div class="spot-title">
-        <h2>🌺 Luljetta's Hanging Gardens</h2>
+        <h2>🌺 Luljetta's Hanging Gardens and Spa</h2>
         <p>📍 Loreland Farm Resort, Brgy. San Roque, Antipolo City</p>
       </div>
     </div>
@@ -503,6 +452,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="10:00" data-close="21:00">Checking...</span>
      <span class="hours-text">Daily: 10:00 AM – 09:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Luljetta's Hanging Gardens and Spa located at San Roque, Antipolo City, Rizal. It is open Daily: 10:00 AM – 09:00 PM.  Luljetta's Hanging Gardens is a luxurious spa and resort that offers breathtaking views of the Metro Manila skyline and the surrounding mountains. This stunning destination features terraced gardens, infinity pools, hydro-massage facilities, and various spa treatments that provide the ultimate relaxation experience. Whether you're looking for a day of pampering or a romantic getaway, Luljetta's offers a serene escape with its beautiful landscapes and tranquil atmosphere. It's the perfect place to unwind and rejuvenate both body and mind. You can call  0917 867 6205 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+     
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.560174, 121.174936)">
+      📍 Get Directions
+    </button>
     </div>
 
       <div class="rating-section">
@@ -544,33 +508,8 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Rizal Provincial Hospital Official Website</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-        <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
+      </div>
+      </section>
 
   <!-- Mystical Cave Section -->
   <section class="spot-section" data-spot="Mystical Cave">
@@ -578,7 +517,7 @@
       <div class="overlay"></div>
       <div class="spot-title">
         <h2>🕳️ Mystical Cave</h2>
-        <p>📍 Brgy. San Jose, Antipolo City</p>
+        <p>📍 25 Masinag, Marikina-Infanta Hwy, Antipolo, 1870 Rizal</p>
       </div>
     </div>
     <p class="photo-source-centered"> Source: Mystical Cave Facebook Page</p>
@@ -590,6 +529,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="08:00" data-close="18:00">Checking...</span>
      <span class="hours-text">Daily: 08:00 AM – 06:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Mystical Cave is located at Marikina-Infanta, Antipolo City. It is open Daily: 08:00 AM – 06:00 PM. The Mystical Cave is a unique spiritual destination in Antipolo that attracts both devotees and curious visitors. This natural cave formation is believed to have healing properties and is filled with religious icons, statues, and altars. Inside, you'll find various chambers with different religious themes, creating a peaceful and contemplative atmosphere. Many visitors come to pray, meditate, or simply experience the serene energy of this special place. Whether you're seeking spiritual connection or just interested in exploring something different, the Mystical Cave offers a truly unique experience. You can call  0905 715 0988 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>    
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.604866, 121.208131)">
+      📍 Get Directions
+    </button>
+    </div>
     </div>
 
       <div class="rating-section">
@@ -630,34 +584,9 @@
             <span class="status-indicator" data-open="0.00" data-close="24:00">Checking...</span>
           </div>
         </div>
-        <p class="photo-source-centered">📸 Source: Metro Antipolo Hospital Official Page</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
+        <p class="photo-source-centered"> Source: Metro Antipolo Hospital Official Page</p>
+      </div>
+      </section>
 
   <!-- Antipolo Cathedral Section -->
   <section class="spot-section" data-spot="Antipolo Cathedral">
@@ -677,6 +606,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="05:00" data-close="20:00">Checking...</span>
      <span class="hours-text">Daily: 05:00 AM – 08:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice=" Antipolo Cathedral is located at P. Oliveros Street, Antipolo City. It is open Daily: 05:00 AM – 08:00 PM. The Antipolo Cathedral, officially known as the International Shrine of Our Lady of Peace and Good Voyage, is one of the most important religious sites in the Philippines. This beautiful church houses the revered image of the Nuestra Señora de la Paz y Buen Viaje (Our Lady of Peace and Good Voyage), which has been venerated by Filipinos for centuries. The cathedral is a popular pilgrimage site, especially during the month of May when thousands of devotees visit as part of the traditional Alay Lakad pilgrimage. Whether you're seeking spiritual solace or admiring the architecture, the Antipolo Cathedral offers a profound and moving experience. You can call  (02) 8571 7347 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+     
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.587630, 121.176621)">
+      📍 Get Directions
+    </button>
     </div>
 
       <div class="rating-section">
@@ -719,33 +663,8 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Antipolo Specialty Hospital Facebook Page</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
+      </div>
+      </section>
 
   <!-- Yellow Lantern Cafe Section -->
   <section class="spot-section" data-spot="Yellow Lantern Cafe">
@@ -764,6 +683,21 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="11:00" data-close="20:00">Checking...</span>
      <span class="hours-text">Tuesday-Sunday: 11:00 AM – 08:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice="Yellow Lantern Cafe is located at Sumulong Highway, Antipolo City. It is open Tuesday-Sunday: 11:00 AM – 08:00 PM. Yellow Lantern Cafe is a charming and cozy dining spot in Antipolo that offers delicious food with a spectacular view of the city below. This popular cafe is known for its warm ambiance, friendly service, and mouthwatering Filipino and international dishes. Whether you're enjoying a romantic dinner as the sun sets or having a leisurely lunch with friends, the panoramic view of Metro Manila from this hillside location is absolutely breathtaking. Don't forget to try their signature dishes and desserts while taking in the stunning scenery! You can call (02) 631 5648 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>
+     
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.587630, 121.176621)">
+      📍 Get Directions
+    </button>
     </div>
 
       <div class="rating-section">
@@ -805,33 +739,8 @@
           </div>
         </div>
         <p class="photo-source-centered"> Source: Fatima University Medical Center Official Page</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-
-         <!-- Toggle Button -->
-<button class="toggle-comments-btn"> View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4> Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-    </div>
-  </section>
+      </div>
+      </section>
 
   <!-- Cloud 9 Section -->
   <section class="spot-section" data-spot="Cloud 9">
@@ -850,6 +759,20 @@
       <p><strong>⏰
      <span class="status-indicator" data-open="10:00" data-close="22:00">Checking...</span>
      <span class="hours-text">Daily: 10:00 AM – 10:00 PM</span>
+     <!-- 🎧 Voice Buttons -->
+    <div class="voice-controls">
+    <button class="voice-btn"
+    data-voice=" Cloud 9 is located at Sumulong Highway, Antipolo City. It is open Daily: 10:00 AM – 10:00 PM. Cloud 9 is one of Antipolo's most iconic destinations, famous for its breathtaking 360-degree view of Metro Manila and the surrounding landscapes. Perched on a hilltop, this popular spot offers a stunning vantage point that's especially magical during sunset and at night when the city lights twinkle below. The establishment features a restaurant and viewing deck where visitors can enjoy delicious food while taking in the panoramic scenery. Whether you're looking for a romantic date spot, a place to unwind with friends, or simply want to capture amazing photos, Cloud 9 delivers an unforgettable experience high above the city. You can call (02) 8697 3344 for more information, Thank you!">
+    🔊 Play
+    </button>
+    <button class="stop-voice-btn">⏹ Stop</button>
+   </div>
+     </p>    
+    <button 
+      class="btn direction-btn" 
+      onclick="openDirections(14.613735, 121.154458)">
+      📍 Get Directions
+    </button>
     </div>
 
       <div class="rating-section">
@@ -890,33 +813,9 @@
             <span class="status-indicator" data-open="0.00" data-close="24:00">Checking...</span>
           </div>
         </div>
-        <p class="photo-source-centered">📸 Source: Fatima University Medical Center Official page-subtitle</p>
-
-        <div class="rating-section hospital-rating">
-          <h4>⭐ Rate this Hospital:</h4>
-          <div class="stars hospital-stars">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-          </div>
-          <p class="rating-result">No hospital rating yet.</p>
-        </div>
-        <!-- Toggle Button -->
-<button class="toggle-comments-btn">💬 View Comments</button>
-
-<!-- Wrapped Comment Section -->
-<div class="comment-wrapper">
-  <div class="comment-section hospital-comment hidden">
-    <h4>💬 Comments for this Hospital:</h4>
-    <textarea placeholder="Share feedback about this hospital..." class="comment-input"></textarea>
-    <button class="btn post-hospital-comment">Post Comment</button>
-    <div class="comment-list hospital-comments"></div>
-  </div>
-</div>
-  </div>
-  </section>
+        <p class="photo-source-centered"> Source: Fatima University Medical Center Official page-subtitle</p>
+      </div>
+      </section>
 
   <footer>
     <p>© 2025 Discover Antipolo | Designed with 💚 Passion for Tourism</p>

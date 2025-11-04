@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Antipolo | Events</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="events-page">
+  <header>
+    <nav class="navbar">
+      <div class="logo">Discover <span>Antipolo</span></div>
+
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">View Destination</a></li>
+        <li><a href="hospital.html">Hospitals Info</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="events-section">
+    <h2>Upcoming Events in Antipolo</h2>
+    <p class="subtitle">Learn about Antipolo’s most celebrated local traditions and festivals.</p>
+
+    <div class="events-container">
+
+      <!-- Event 1 -->
+      <div class="event-card">
+        <img src="./images/sumakah.jpg" alt="Sumakah Festival">
+        <div class="event-info">
+          <h3>Sumakah Festival</h3>
+          <p class="date">May 1, 2026</p>
+          <div class="countdown" id="countdown1"></div>
+          <p class="desc">
+            The Sumakah Festival is an annual celebration in Antipolo City, showcasing the city's pride — SUman, MAngga, KAsoy, and Hamaka. It reflects the city’s products and cultural identity during the Maytime Festival.
+          </p>
+          <p class="source">Source: Antipolo City Philippines website</p>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <img src="./images/gabi.jpg" alt="Simbang Gabi">
+        <div class="event-info">
+          <h3>Simbang Gabi</h3>
+          <p class="date">December 16, 2025</p>
+          <div class="countdown" id="countdown2"></div>
+          <p class="desc">
+            Simbang Gabi in Antipolo is a nine-day series of early morning Masses before Christmas. It highlights Filipino Catholic faith and ends on Christmas Eve with community gatherings.
+          </p>
+          <p class="source">Source: Antipolo Cathedral Official Facebook Page</p>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <img src="./images/palm.jpg" alt="Palm Sunday">
+        <div class="event-info">
+          <h3>Palm Sunday</h3>
+          <p class="date">March 29, 2026</p>
+          <div class="countdown" id="countdown3"></div>
+          <p class="desc">
+            Palm Sunday in Antipolo is observed with a special Mass at Antipolo Cathedral, where devotees gather to commemorate Jesus’ entry into Jerusalem.
+          </p>
+          <p class="source">Source: Antipolo Cathedral Official Facebook Page</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Discover Antipolo | All Rights Reserved</p>
+    <p>
+      <a href="privacy.html"> Privacy Policy</a> | 
+      <a href="terms.html"> Terms & Conditions</a>
+    </p>
+  </footer>
+
+  <script>
+  // Simple Countdown Timer
+  function countdownTimer(targetDate, elementId) {
+    const countDownDate = new Date(targetDate).getTime();
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        document.getElementById(elementId).innerHTML = "Happening Now";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById(elementId).innerHTML =
+        `${days} days ${hours} hrs ${minutes} mins`;
+    }, 1000);
+  }
+
+  countdownTimer("May 1, 2026 00:00:00", "countdown1");
+  countdownTimer("December 16, 2025 00:00:00", "countdown2");
+  countdownTimer("March 29, 2026 00:00:00", "countdown3");
+  </script>
+</body>
+</html>

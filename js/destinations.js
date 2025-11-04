@@ -450,6 +450,42 @@ function onLoginSuccess() {
     }
   }, 1000);
 }
+// 🎧 Voice Reading Controls
+function initVoiceButtons() {
+  const voiceButtons = document.querySelectorAll(".voice-btn");
+  const stopButtons = document.querySelectorAll(".stop-voice-btn");
+  let currentUtterance = null;
+
+  voiceButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const text = button.getAttribute("data-voice");
+      if (!text) return;
+
+      // Stop any ongoing speech before starting a new one
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US"; // English
+      utterance.rate = 1; // Normal speed
+      utterance.pitch = 10; // Normal tone
+      utterance.volume = 1; // Normal volume
+
+      window.speechSynthesis.speak(utterance);
+      currentUtterance = utterance;
+    });
+  });
+
+  stopButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      window.speechSynthesis.cancel();
+      currentUtterance = null;
+    });
+  });
+}
+
+// Initialize voice buttons when the page loads
+document.addEventListener("DOMContentLoaded", initVoiceButtons);
+
 
 // =======================================================
 // ⚙️ INITIALIZE

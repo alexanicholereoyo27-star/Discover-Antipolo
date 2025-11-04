@@ -4,11 +4,37 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
 body {
-  background-color: #cdf3d6;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/antipolo_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #ebdfdf;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.70);
+  z-index: -1;
+}
+
+/* === FADE-IN ANIMATION === */
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
 
 /* ===== GLOBAL SCROLLBAR HIDING ===== */
 
@@ -35,7 +61,6 @@ body {
   overflow: -moz-scrollbars-none; /* Old Firefox */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
-
 /* Hide scrollbar for all elements with overflow */
 *::-webkit-scrollbar {
   display: none;
@@ -142,9 +167,6 @@ body {
     font-size: 0.9em;
   }
 }
-
-
-
 .btn {
   display: inline-block;
   margin-top: 20px;
@@ -158,8 +180,7 @@ body {
 
 .btn:hover {
   background: #fff;
-  color: #007f5f;
-  box-shadow: 0 0 15px #ffd700;
+  
 }
 
 footer {
@@ -251,15 +272,6 @@ footer {
 
 
 /* 🌿 Full-page background fix */
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh; /* ensures full screen coverage */
-  background: linear-gradient(to bottom, #cee4b7, #c8e9a7); /* mint to light gold gradient */
-  font-family: 'Poppins', sans-serif;
-  color: #0d0d0d;
-  line-height: 1.6;
-}
 
 
 .hero-bg {
@@ -280,7 +292,137 @@ body {
 }
 
 /* --- Each Spot Section --- */
-.spot-section { margin: 50px auto; width: 90%; max-width: 900px; background: rgb(224, 232, 225); border-radius: 20px; box-shadow: 0 5px 15px rgba(0, 128, 0, 0.1); overflow: hidden; animation: fadeIn 1s ease-in-out; } .spot-banner { background-size: cover; background-position: center center; width: 100%; height: 550px; /* Increased height for a more square look */ max-width: 900px; /* Optional: limits width so it’s balanced */ margin: 0 auto; /* Centers the image */ border-radius: 25px; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; } /* Hover effect for a more dynamic feel */ .spot-banner:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); } /* 🟡 Optional: make text pop better without darkening image */ .spot-title { position: absolute; bottom: 20px; left: 30px; color: #fff; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4); background: rgba(0, 0, 0, 0.25); /* semi-transparent box behind text */ padding: 10px 14px; border-radius: 8px; backdrop-filter: blur(2px); transition: 0.3s ease-in-out; } .spot-title:hover { background: rgba(0, 0, 0, 0.4); } /* Photo source under banner */ .photo-source-centered { text-align: center; margin-top: 5px; font-size: 0.85em; font-style: italic; color: #555; opacity: 0.9; } .photo-source-banner:hover { background: rgba(255, 255, 255, 1); transform: scale(1.03); } /* Title area inside image */ .spot-title h2 { font-size: 1.0em; /* ⬇️ smaller but still bold */ margin: 0; line-height: 1.3; font-weight: 400; color:rgb(185, 208, 114) } .spot-title p { font-size: 0.7em; /* ⬇️ smaller for address text */ margin-top: 5px; color: #f1f1f1; } /* Adjust the background box behind text */ .spot-title { position: absolute; bottom: 18px; left: 25px; color: #fff; background: rgba(0, 0, 0, 0.25); /* slightly transparent black */ padding: 10px 14px; border-radius: 10px; max-width: 85%; backdrop-filter: blur(2px); transition: 0.3s ease-in-out; } .spot-title:hover { background: rgba(0, 0, 0, 0.45); } .spot-content { padding: 25px 30px; }
+.spot-section {
+  margin: 50px auto;
+  width: 90%;
+  max-width: 900px;
+
+  /* 🌈 Animated gradient background */
+  background: linear-gradient(135deg, #dce9dc, #b8d9b8, #cde6cd);
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 128, 0, 0.1);
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Gradient movement animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Spot Banner (Animated Zoom Effect) --- */
+.spot-banner {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 550px; /* Increased height for a more square look */
+  max-width: 900px; /* Optional: limits width so it’s balanced */
+  margin: 0 auto; /* Centers the image */
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* 🖼 Smooth zoom animation */
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+/* Zoom animation keyframes */
+@keyframes slowZoom {
+  0% { background-size: 100%; }
+  100% { background-size: 110%; }
+}
+
+/* Hover effect for a more dynamic feel */
+.spot-banner:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.05);
+}
+
+/* 🟡 Optional: make text pop better without darkening image */
+.spot-title {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.25); /* semi-transparent box behind text */
+  padding: 10px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+  transition: 0.3s ease-in-out;
+}
+
+.spot-title:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Photo source under banner */
+.photo-source-centered {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 0.85em;
+  font-style: italic;
+  color: #555;
+  opacity: 0.9;
+}
+
+.photo-source-banner:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.03);
+}
+
+/* Title area inside image */
+.spot-title h2 {
+  font-size: 1.0em; /* ⬇️ smaller but still bold */
+  margin: 0;
+  line-height: 1.3;
+  font-weight: 400;
+  color: rgb(235, 242, 213);
+}
+
+.spot-title p {
+  font-size: 0.7em; /* ⬇️ smaller for address text */
+  margin-top: 5px;
+  color: #f1f1f1;
+}
+
+/* Adjust the background box behind text */
+.spot-title {
+  position: absolute;
+  bottom: 18px;
+  left: 25px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.25); /* slightly transparent black */
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 85%;
+  backdrop-filter: blur(2px);
+  transition: 0.3s ease-in-out;
+}
+
+.spot-title:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Spot content */
+.spot-content {
+  padding: 25px 30px;
+}
+
+/* Gradient Animation Keyframes */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 
 /* Buttons */
@@ -859,7 +1001,7 @@ body {
 }
 
 .contact-section h3 {
-  color: #007f5f;
+  color: #9ffa5a;
   font-size: 1.6em;
 }
 
@@ -869,7 +1011,7 @@ body {
 }
 
 .contact-links a {
-  color: #007f5f;
+  color: #f3eeee;
   font-weight: 600;
   text-decoration: none;
 }
@@ -879,9 +1021,10 @@ body {
 }
 /* 🌄 Developers' Memories Collage Section */
 .memories-collage {
-  background: #f8fff8;
+  background: #cdf0cd;
   padding: 60px 20px;
   text-align: center;
+  margin-top: 60px;
 }
 
 .collage-desc {
@@ -2113,18 +2256,18 @@ body {
   padding: 60px 40px;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 40px;
+  gap: 50px;
 }
 
 .about-text {
   flex: 1 1 50%;
-  font-size: 1em;
-  color: #333;
+  font-size: 1.2em;
+  color: #fafafa;
   line-height: 1.6;
 }
 
 .about-text h3 {
-  color: #007f5f;
+  color: #59f2cc;
   margin-top: 15px;
   font-weight: 600;
 }
@@ -2254,14 +2397,6 @@ body {
 }
 /* ---------- PRIVACY POLICY PAGE ---------- */
 
-body {
-  background-color: #fafafa;
-  color: #333;
-  font-family: "Segoe UI", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
 
 .privacy-header {
   background-color: #007f5f;
@@ -2309,14 +2444,14 @@ body {
 .privacy-footer {
   text-align: center;
   font-size: 0.9em;
-  color: #555;
+  color: #f4e4e4;
   padding: 20px;
   border-top: 1px solid #ddd;
   background-color: #f2f2f2;
 }
 
 .privacy-footer a {
-  color: #007f5f;
+  color: #f1f9f7;
   text-decoration: none;
   font-weight: 600;
 }
@@ -2419,4 +2554,220 @@ body {
     padding: 20px;
     font-size: 14px;
   }
+}
+/* ===== Clean & Professional Get Directions Button ===== */
+.direction-btn {
+  background-color: #39958a; /* calm green accent */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: none; /* no heavy shadows */
+}
+/* 🎧 Voice Button Section - Clean & Simple */
+.voice-controls {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.voice-btn,
+.stop-voice-btn {
+  background-color: #2e7d32; /* deep green tone */
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.stop-voice-btn {
+  background-color: #c62828; /* calm red for stop */
+}
+
+.voice-btn:hover {
+  background-color: #1b5e20; /* darker green on hover */
+  transform: scale(1.03);
+}
+
+.stop-voice-btn:hover {
+  background-color: #b71c1c; /* slightly darker red on hover */
+  transform: scale(1.03);
+}
+
+/* Optional: center on mobile screens */
+@media (max-width: 600px) {
+  .voice-controls {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .voice-btn,
+  .stop-voice-btn {
+    width: fit-content;
+  }
+}
+.memories-page {
+  color: #f3f8e7 !important; /* make all text white */
+}
+
+.destination-page {
+  color: #070707 !important; /* make all text white */
+}
+/* === EVENTS PAGE: ELEGANT & PROFESSIONAL WITH HIGHLIGHTED COUNTDOWN === */
+.events-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background: transparent;
+}
+
+.events-section h2 {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #d2d3cf;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.events-section .subtitle {
+  font-size: 1.05em;
+  color: #f0e6e6;
+  opacity: 0.9;
+  margin-bottom: 45px;
+}
+
+/* Container layout */
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* 🌿 Card with balanced glassy depth */
+.event-card {
+  width: 340px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Event image styling */
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease;
+}
+
+.event-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Info section */
+.event-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.event-info h3 {
+  font-size: 1.3em;
+  color: #145a32;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.event-info .date {
+  font-size: 0.9em;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+/* 🔥 Countdown Highlight — focus of the section */
+.countdown {
+  display: inline-block;
+  background: linear-gradient(135deg, #1e8449, #27ae60);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95em;
+  letter-spacing: 0.3px;
+  box-shadow: 0 3px 8px rgba(39, 174, 96, 0.3);
+  margin-bottom: 12px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.countdown:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #2ecc71, #239b56);
+}
+
+/* Text content */
+.event-info .desc {
+  font-size: 0.9em;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.source {
+  font-size: 0.8em;
+  color: #555;
+  font-style: italic;
+}
+
+/* ✨ Animation (fade-in with delay) */
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.event-card {
+  opacity: 0;
+  animation: fadeInCard 0.7s ease forwards;
+}
+
+.event-card:nth-child(1) { animation-delay: 0.2s; }
+.event-card:nth-child(2) { animation-delay: 0.4s; }
+.event-card:nth-child(3) { animation-delay: 0.6s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .events-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-card {
+    width: 90%;
+  }
+}
+.register-text {
+  color: #0f100f !important; /* make all text white */
 }
