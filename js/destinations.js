@@ -456,6 +456,7 @@ function initVoiceButtons() {
   const stopButtons = document.querySelectorAll(".stop-voice-btn");
   let currentUtterance = null;
 
+  // 🟢 PLAY BUTTON FUNCTION
   voiceButtons.forEach(button => {
     button.addEventListener("click", () => {
       const text = button.getAttribute("data-voice");
@@ -465,32 +466,51 @@ function initVoiceButtons() {
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
+      // --- Voice settings for natural tone ---
+      utterance.lang = "en-US";     // Use standard English voice
+      utterance.pitch = 0.8;        // Lower pitch (0.7–0.9 sounds more natural)
+      utterance.rate = 0.95;        // Slightly slower for clarity
+      utterance.volume = 1;         // Full volume
 
-// --- Voice settings for natural tone ---
-    utterance.lang = "en-US";     // Use standard English voice
-    utterance.pitch = 0.8;        // Lower pitch (0.7–0.9 sounds more natural)
-    utterance.rate = 0.95;        // Slightly slower for clarity
-    utterance.volume = 1;         // Full volume
+      // --- Optional: choose a more neutral/female voice if available ---
+      const voices = window.speechSynthesis.getVoices();
+      const preferredVoice = voices.find(v =>
+        v.name.toLowerCase().includes("female") ||
+        v.name.toLowerCase().includes("english")
+      );
+      if (preferredVoice) utterance.voice = preferredVoice;
 
-// --- Optional: choose a more neutral voice if available ---
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(v =>
-  v.name.toLowerCase().includes("female") ||
-  v.name.toLowerCase().includes("english")
-);
-if (preferredVoice) utterance.voice = preferredVoice;
+      // Stop previous speech and speak again
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
 
-// Stop previous speech and speak again
-  speechSynthesis.cancel();
-  speechSynthesis.speak(utterance);
-  currentUtterance = utterance;
+      // 🟡 Automatically clear when speech ends
+      utterance.onend = () => {
+        currentUtterance = null;
+        console.log("✅ Speech finished.");
+      };
 
+      currentUtterance = utterance;
+    });
+  });
+
+  // 🔴 STOP BUTTON FUNCTION
+  stopButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+        window.speechSynthesis.cancel();  // Stop immediately
+        currentUtterance = null;
+        console.log("🔇 Speech stopped successfully");
+      } else {
+        console.log("⚠️ No speech currently playing");
+      }
     });
   });
 }
 
-// Initialize voice buttons when the page loads
+// Initialize voice buttons when page loads
 document.addEventListener("DOMContentLoaded", initVoiceButtons);
+
 
 
 // =======================================================
