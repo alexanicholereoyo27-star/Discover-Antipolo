@@ -493,19 +493,21 @@ function initVoiceButtons() {
       currentUtterance = utterance;
     });
   });
-
-  // 🔴 STOP BUTTON FUNCTION
-  stopButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
-        window.speechSynthesis.cancel();  // Stop immediately
-        currentUtterance = null;
-        console.log("🔇 Speech stopped successfully");
-      } else {
-        console.log("⚠️ No speech currently playing");
-      }
-    });
+     stopButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    console.log("🟥 Stop button clicked");
+    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+      // Force stop on mobile
+      window.speechSynthesis.pause();
+      setTimeout(() => {
+        window.speechSynthesis.cancel();
+        console.log("✅ Speech stopped (forced for mobile)");
+      }, 100);
+    } else {
+      console.log("⚠️ No speech currently playing");
+    }
   });
+});
 }
 
 // Initialize voice buttons when page loads
