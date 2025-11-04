@@ -465,20 +465,26 @@ function initVoiceButtons() {
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US"; // English
-      utterance.rate = 1; // Normal speed
-      utterance.pitch = 10; // Normal tone
-      utterance.volume = 1; // Normal volume
 
-      window.speechSynthesis.speak(utterance);
-      currentUtterance = utterance;
-    });
-  });
+// --- Voice settings for natural tone ---
+    utterance.lang = "en-US";     // Use standard English voice
+    utterance.pitch = 0.8;        // Lower pitch (0.7–0.9 sounds more natural)
+    utterance.rate = 0.95;        // Slightly slower for clarity
+    utterance.volume = 1;         // Full volume
 
-  stopButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      window.speechSynthesis.cancel();
-      currentUtterance = null;
+// --- Optional: choose a more neutral voice if available ---
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(v =>
+  v.name.toLowerCase().includes("female") ||
+  v.name.toLowerCase().includes("english")
+);
+if (preferredVoice) utterance.voice = preferredVoice;
+
+// Stop previous speech and speak again
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+  currentUtterance = utterance;
+
     });
   });
 }
