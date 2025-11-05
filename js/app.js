@@ -79,21 +79,35 @@ class MobileNavigation {
     return localStorage.getItem('isLoggedIn') === 'true';
   }
 
-  // Update login/logout button
   updateAuthButton() {
-    const loginLink = document.querySelector('a[href="login.html"]');
-    if (loginLink) {
-      if (this.isLoggedIn()) {
-        loginLink.textContent = 'Logout';
-        loginLink.href = '#';
-        loginLink.classList.add('logout-btn');
-      } else {
-        loginLink.textContent = 'Login';
-        loginLink.href = 'login.html';
-        loginLink.classList.remove('logout-btn');
-      }
+  let loginLink = document.querySelector('a[href="login.html"]');
+
+  // If no login link exists, create one
+  if (!loginLink) {
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+      const li = document.createElement('li');
+      loginLink = document.createElement('a');
+      loginLink.href = 'login.html';
+      loginLink.textContent = 'Login';
+      li.appendChild(loginLink);
+      navMenu.appendChild(li);
     }
   }
+
+  // Continue with existing logic
+  if (loginLink) {
+    if (this.isLoggedIn()) {
+      loginLink.textContent = 'Logout';
+      loginLink.href = '#';
+      loginLink.classList.add('logout-btn');
+    } else {
+      loginLink.textContent = 'Login';
+      loginLink.href = 'login.html';
+      loginLink.classList.remove('logout-btn');
+    }
+  }
+}
 
   // Handle logout with confirmation
   handleLogout() {

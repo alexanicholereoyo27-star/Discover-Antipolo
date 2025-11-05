@@ -2868,14 +2868,14 @@ footer {
   width: 90%;
   max-width: 900px;
   margin: 50px auto;
-  background: rgba(255, 255, 255, 0.97);
+  background: #1236298a;
   padding: 25px 30px;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .cart-section h2 {
-  color: #004f32;
+  color: #f0fff0;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -2894,8 +2894,8 @@ footer {
 }
 
 #cart-table th {
-  background-color: #f8f8f8;
-  color: #004f32;
+  background-color: #37a470;
+  color: #111212;
 }
 
 .qty-input {
@@ -2914,7 +2914,7 @@ footer {
   text-align: right;
   margin-top: 15px;
   font-size: 1.1em;
-  color: #004f32;
+  color: #f0fff0;
   font-weight: 600;
 }
 
@@ -2926,7 +2926,7 @@ footer {
 
 .converter label {
   font-weight: 600;
-  color: #004f32;
+  color: #f0fff0;
 }
 
 .converter select,
@@ -2951,7 +2951,7 @@ footer {
 #converted-total {
   margin-top: 10px;
   font-weight: 600;
-  color: #004f32;
+  color: #f0fff0;
   font-size: 1em;
 }
 
@@ -2968,9 +2968,9 @@ footer {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
+    
     height: 100vh;
-    background: white;
+   
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -3284,7 +3284,7 @@ footer {
 }
 
 .logout-btn:hover {
-  color: #c0392b !important;
+  color: #f02929 !important;
   background-color: rgba(231, 76, 60, 0.1) !important;
 }
 
