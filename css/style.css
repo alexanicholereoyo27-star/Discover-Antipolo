@@ -338,7 +338,7 @@ footer {
 
 /* Dark overlay for readability */
 .spot-banner::after {
-  content: "none";
+ 
   position: absolute;
   top: 0;
   left: 0;
@@ -2795,7 +2795,7 @@ footer {
 .category-title {
   width: 90%;
   margin: 40px auto 10px;
-  color: #004f32;
+  color: #f8fbf5;
   font-size: 1.3em;
   font-weight: 700;
   border-left: 5px solid #007f5f;
