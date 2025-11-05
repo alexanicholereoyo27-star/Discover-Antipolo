@@ -1,5 +1,5 @@
 // =======================================================
-// 🌟 DestinationInteractions - FIXED for Firebase Auth
+// 🌟 DestinationInteractions - FIXED for Firebase Auth & Database
 // =======================================================
 class DestinationInteractions {
   constructor() {
@@ -13,16 +13,27 @@ class DestinationInteractions {
   initializeFirebase() {
     try {
       const firebaseConfig = {
-        databaseURL: "https://discoverantipolo-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        apiKey: "AIzaSyD9NfWr49Q0BKvVo8cGs_IZGvzWYAuCVKw",
+        authDomain: "discoverantipolo.firebaseapp.com",
+        databaseURL: "https://discoverantipolo-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        projectId: "discoverantipolo",
+        storageBucket: "discoverantipolo.firebasestorage.app",
+        messagingSenderId: "49102168673",
+        appId: "1:49102168673:web:a65f8f4c5fed1e594ac020"
       };
       
       if (typeof firebase !== 'undefined') {
-        firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase if not already initialized
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
         this.db = firebase.database();
-        console.log("✅ Firebase initialized");
+        console.log("✅ Firebase initialized successfully");
+      } else {
+        console.error("❌ Firebase not loaded");
       }
     } catch (error) {
-      console.error("❌ Firebase error:", error);
+      console.error("❌ Firebase initialization error:", error);
     }
   }
 
@@ -43,7 +54,7 @@ class DestinationInteractions {
     console.log("🎯 Ready! User:", this.currentUser?.name || "Not logged in");
   }
 
-  // 👤 Get user from Firebase Authentication - SIMPLE & RELIABLE
+  // 👤 Get user from Firebase Authentication - ENHANCED VERSION
   getUserFromFirebaseAuth() {
     console.log("🔍 Getting user from Firebase Auth...");
     
@@ -61,6 +72,7 @@ class DestinationInteractions {
             email: currentUser.email,
             isGuest: false
           };
+          this.updateUI();
           return;
         }
       } catch (error) {
@@ -100,6 +112,7 @@ class DestinationInteractions {
             };
             
             console.log("🎯 Extracted user:", this.currentUser);
+            this.updateUI();
             return;
           }
         } catch (error) {
@@ -109,6 +122,8 @@ class DestinationInteractions {
     }
     
     console.log("❌ No Firebase user found in sessionStorage");
+    this.currentUser = null;
+    this.updateUI();
   }
 
   // 🔊 Listen for auth state changes
@@ -157,7 +172,7 @@ class DestinationInteractions {
     });
     
     // Update buttons
-    document.querySelectorAll('.post-comment').forEach(btn => {
+    document.querySelectorAll('.post-spot-comment').forEach(btn => {
       if (loggedIn) {
         btn.disabled = false;
         btn.textContent = "Post Comment";
@@ -235,10 +250,10 @@ class DestinationInteractions {
     }
 
     try {
-      const sanitizedKey = itemName.replace(/[.#$\/\[\]]/g, '_').replace(/\s+/g, '_');
-      const ratingRef = this.db.ref(`ratings/spots/${sanitizedKey}`).push();
+      const sanitizedKey = this.sanitizeKey(itemName);
+      const userRatingRef = this.db.ref(`ratings/spots/${sanitizedKey}/userRatings/${this.currentUser.id}`);
       
-      await ratingRef.set({
+      await userRatingRef.set({
         value: parseInt(rating),
         timestamp: Date.now(),
         itemName: itemName,
@@ -258,8 +273,8 @@ class DestinationInteractions {
   loadRatings(itemName, ratingSection) {
     if (!this.db) return;
 
-    const sanitizedKey = itemName.replace(/[.#$\/\[\]]/g, '_').replace(/\s+/g, '_');
-    const ratingsRef = this.db.ref(`ratings/spots/${sanitizedKey}`);
+    const sanitizedKey = this.sanitizeKey(itemName);
+    const ratingsRef = this.db.ref(`ratings/spots/${sanitizedKey}/userRatings`);
     
     ratingsRef.on('value', (snapshot) => {
       const ratings = snapshot.val();
@@ -281,19 +296,27 @@ class DestinationInteractions {
         }
         
         ratingStats.innerHTML = `<strong>${average} ★</strong> (${count} ratings)`;
+        
+        // Update current user's rating if exists
+        if (this.currentUser && ratings[this.currentUser.id]) {
+          const userRating = ratings[this.currentUser.id].value;
+          const result = ratingSection.querySelector('.rating-result');
+          if (result) {
+            result.textContent = `You rated this ${userRating} ★`;
+          }
+          
+          // Update star display
+          const stars = ratingSection.querySelectorAll('.star');
+          stars.forEach(s => s.classList.remove('active'));
+          for (let i = 0; i < userRating; i++) stars[i].classList.add('active');
+        }
       }
     });
   }
 
-  // 💬 Comments
+  // 💬 Comments - ENHANCED VERSION
   initComments() {
-    document.querySelectorAll('.post-comment').forEach(btn => {
-      const textarea = btn.previousElementSibling;
-      const list = btn.nextElementSibling;
-      const itemName = btn.closest('.spot-section').querySelector('h2').textContent.trim();
-
-      this.loadComments(itemName, list);
-
+    document.querySelectorAll('.post-spot-comment').forEach(btn => {
       btn.addEventListener('click', () => {
         console.log("💬 Comment button clicked by:", this.currentUser?.name);
         
@@ -302,10 +325,15 @@ class DestinationInteractions {
           return;
         }
 
+        const textarea = btn.previousElementSibling;
+        const list = btn.nextElementSibling;
+        const itemName = btn.closest('.spot-section').querySelector('h2').textContent.trim();
         const text = textarea.value.trim();
+        
         if (text) {
           console.log(`💬 ${this.currentUser.name} commenting: ${text}`);
           
+          // Add comment immediately for better UX
           const div = document.createElement('div');
           div.className = 'comment-item';
           div.innerHTML = `
@@ -317,16 +345,29 @@ class DestinationInteractions {
           `;
           list.appendChild(div);
           
+          // Save to Firebase
           this.saveComment(itemName, text);
           textarea.value = '';
+          
+          // Scroll to show new comment
+          div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
           alert('Please enter a comment!');
         }
       });
     });
+
+    // Load comments for all sections
+    document.querySelectorAll('.spot-section').forEach(section => {
+      const itemName = section.querySelector('h2').textContent.trim();
+      const commentsList = section.querySelector('.spot-comments');
+      if (commentsList) {
+        this.loadComments(itemName, commentsList);
+      }
+    });
   }
 
-  // 💾 Save comment
+  // 💾 Save comment - ENHANCED VERSION
   async saveComment(itemName, comment) {
     if (!this.db || !this.isLoggedIn()) {
       console.error("❌ Cannot save comment - no DB or not logged in");
@@ -334,29 +375,35 @@ class DestinationInteractions {
     }
 
     try {
-      const sanitizedKey = itemName.replace(/[.#$\/\[\]]/g, '_').replace(/\s+/g, '_');
+      const sanitizedKey = this.sanitizeKey(itemName);
       const commentsRef = this.db.ref(`comments/spots/${sanitizedKey}`).push();
       
-      await commentsRef.set({
+      const commentData = {
         text: comment,
         timestamp: Date.now(),
         itemName: itemName,
         userName: this.currentUser.name,
         userEmail: this.currentUser.email || 'no-email',
         userId: this.currentUser.id
-      });
+      };
       
-      console.log("✅ Comment saved successfully");
+      await commentsRef.set(commentData);
+      
+      console.log("✅ Comment saved successfully:", commentData);
     } catch (error) {
       console.error("❌ Comment save error:", error);
+      alert("Error saving comment. Please try again.");
     }
   }
 
-  // 📝 Load comments
+  // 📝 Load comments - ENHANCED VERSION
   loadComments(itemName, commentsList) {
-    if (!this.db) return;
+    if (!this.db) {
+      console.log("❌ Firebase not available for loading comments");
+      return;
+    }
 
-    const sanitizedKey = itemName.replace(/[.#$\/\[\]]/g, '_').replace(/\s+/g, '_');
+    const sanitizedKey = this.sanitizeKey(itemName);
     const commentsRef = this.db.ref(`comments/spots/${sanitizedKey}`);
     
     commentsRef.on('value', (snapshot) => {
@@ -364,23 +411,38 @@ class DestinationInteractions {
       commentsList.innerHTML = '';
 
       if (comments) {
-        Object.entries(comments)
+        // Convert to array and sort by timestamp (newest first)
+        const commentsArray = Object.entries(comments)
           .map(([key, value]) => ({ id: key, ...value }))
-          .sort((a, b) => b.timestamp - a.timestamp)
-          .forEach(comment => {
-            const div = document.createElement('div');
-            div.className = 'comment-item';
-            div.innerHTML = `
-              <div class="comment-header">
-                <strong>${comment.userName}</strong>
-                <span class="comment-time">${this.getTimeAgo(comment.timestamp)}</span>
-              </div>
-              <div class="comment-text">${comment.text}</div>
-            `;
-            commentsList.appendChild(div);
-          });
+          .sort((a, b) => b.timestamp - a.timestamp);
+        
+        console.log(`📝 Loading ${commentsArray.length} comments for ${itemName}`);
+        
+        commentsArray.forEach(comment => {
+          const div = document.createElement('div');
+          div.className = 'comment-item';
+          div.innerHTML = `
+            <div class="comment-header">
+              <strong>${comment.userName}</strong>
+              <span class="comment-time">${this.getTimeAgo(comment.timestamp)}</span>
+            </div>
+            <div class="comment-text">${comment.text}</div>
+          `;
+          commentsList.appendChild(div);
+        });
+      } else {
+        console.log(`📝 No comments found for ${itemName}`);
+        commentsList.innerHTML = '<div class="no-comments">No comments yet. Be the first to comment!</div>';
       }
+    }, (error) => {
+      console.error("❌ Error loading comments:", error);
+      commentsList.innerHTML = '<div class="error-comments">Error loading comments</div>';
     });
+  }
+
+  // 🔧 Sanitize keys for Firebase
+  sanitizeKey(key) {
+    return key.replace(/[.#$\/\[\]]/g, '_').replace(/\s+/g, '_').toLowerCase();
   }
 
   // ⏰ Time ago
@@ -450,6 +512,7 @@ function onLoginSuccess() {
     }
   }, 1000);
 }
+
 // 🎧 Voice Reading Controls
 function initVoiceButtons() {
   const voiceButtons = document.querySelectorAll(".voice-btn");
@@ -493,40 +556,121 @@ function initVoiceButtons() {
       currentUtterance = utterance;
     });
   });
-     stopButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    console.log("🟥 Stop button clicked");
-    if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
-      // Force stop on mobile
-      window.speechSynthesis.pause();
-      setTimeout(() => {
-        window.speechSynthesis.cancel();
-        console.log("✅ Speech stopped (forced for mobile)");
-      }, 100);
-    } else {
-      console.log("⚠️ No speech currently playing");
-    }
+  
+  stopButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      console.log("🟥 Stop button clicked");
+      if (window.speechSynthesis.speaking || window.speechSynthesis.paused) {
+        // Force stop on mobile
+        window.speechSynthesis.pause();
+        setTimeout(() => {
+          window.speechSynthesis.cancel();
+          console.log("✅ Speech stopped (forced for mobile)");
+        }, 100);
+      } else {
+        console.log("⚠️ No speech currently playing");
+      }
+    });
   });
-});
 }
-
-// Initialize voice buttons when page loads
-document.addEventListener("DOMContentLoaded", initVoiceButtons);
-
-
 
 // =======================================================
 // ⚙️ INITIALIZE
 // =======================================================
+
+// Add some CSS for better comment display - FIXED to prevent duplicate declarations
+function injectCommentStyles() {
+  // Check if styles already exist
+  if (document.querySelector('#comment-styles')) return;
+  
+  const commentStyles = `
+.comment-item {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-header strong {
+  color: #495057;
+  font-size: 14px;
+}
+
+.comment-time {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.comment-text {
+  color: #212529;
+  line-height: 1.4;
+}
+
+.no-comments, .error-comments {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 20px;
+}
+
+.rating-stats {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #495057;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ddd;
+  transition: color 0.2s ease;
+}
+
+.star.active {
+  color: #ffc107;
+}
+
+.star:hover {
+  color: #ffc107;
+}
+`;
+
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'comment-styles';
+  styleSheet.textContent = commentStyles;
+  document.head.appendChild(styleSheet);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log("🚀 Starting Discover Antipolo...");
+  
+  // Inject styles first
+  injectCommentStyles();
+  
+  // Initialize voice buttons
+  initVoiceButtons();
+  
+  // Initialize the main app
   window.destinationApp = new DestinationInteractions();
   
   // Global function for login success
   window.onLoginSuccess = onLoginSuccess;
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+  // Status indicators for opening hours
   const indicators = document.querySelectorAll(".status-indicator");
   const now = new Date();
   const currentHour = now.getHours() + now.getMinutes() / 60;
@@ -557,8 +701,8 @@ document.addEventListener("DOMContentLoaded", () => {
       indicator.classList.add("closed");
     }
   });
-});
-document.addEventListener("DOMContentLoaded", () => {
+
+  // Toggle comments visibility
   const toggleButtons = document.querySelectorAll(".toggle-comments-btn");
 
   toggleButtons.forEach(button => {
@@ -578,24 +722,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-// Tourist Spot Comments
-document.querySelectorAll('.post-spot-comment').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const textarea = btn.previousElementSibling;
-    const list = btn.nextElementSibling;
-    const text = textarea.value.trim();
 
-    if (text) {
-      const div = document.createElement('div');
-      div.className = 'comment-item';
-      div.textContent = `💭 ${text}`;
-      list.appendChild(div);
-      textarea.value = '';
-    } else {
-      alert('Please enter a comment for this tourist spot!');
-    }
-  });
-});
+// Directions function
 function openDirections(lat, lng) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(

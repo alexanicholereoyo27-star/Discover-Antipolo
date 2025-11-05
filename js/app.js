@@ -1,34 +1,19 @@
-// app.js
-
-// Hero Animation Class
-class HeroAnimation {
-  constructor() {
-    this.heroText = document.querySelector('.hero-content h1');
-    if (this.heroText) {
-      this.fadeIn();
-    }
-  }
-
-  fadeIn() {
-    this.heroText.style.transition = 'all 1.5s ease';
-    this.heroText.style.opacity = 1;
-  }
-}
-
-// Mobile Navigation Class - UPDATED FOR CURRENT HTML STRUCTURE
+// Mobile Navigation Class - UPDATED WITH LOGIN/LOGOUT FUNCTIONALITY
 class MobileNavigation {
   constructor() {
-    // Updated selectors to match your current HTML structure
     this.menuToggle = document.querySelector('.menu-toggle');
-    this.navMenu = document.querySelector('.navbar ul'); // Changed from .nav-menu
+    this.navMenu = document.querySelector('.nav-menu');
     this.mobileOverlay = document.querySelector('.mobile-overlay');
-    this.navLinks = document.querySelectorAll('.navbar ul li a'); // Updated selector
+    this.navLinks = document.querySelectorAll('.nav-menu li a');
     this.isMenuOpen = false;
     
     this.init();
   }
 
   init() {
+    // Check if user is logged in and update button
+    this.updateAuthButton();
+    
     // Create mobile overlay if it doesn't exist
     if (!this.mobileOverlay && this.menuToggle) {
       this.createMobileOverlay();
@@ -49,19 +34,24 @@ class MobileNavigation {
 
     // Close menu when clicking on navigation links
     this.navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        // Handle logout click
+        if (link.classList.contains('logout-btn')) {
+          e.preventDefault();
+          this.handleLogout();
+        }
+        
         if (this.navMenu && this.navMenu.classList.contains('active')) {
           this.toggleMenu();
         }
-        // Don't prevent default - let the link navigate normally
       });
     });
 
     // Close menu when clicking anywhere outside the menu
     document.addEventListener('click', (e) => {
       if (this.isMenuOpen && 
-          !this.navMenu.contains(e.target) && 
-          !this.menuToggle.contains(e.target)) {
+          this.navMenu && !this.navMenu.contains(e.target) && 
+          this.menuToggle && !this.menuToggle.contains(e.target)) {
         this.closeMenu();
       }
     });
@@ -84,10 +74,46 @@ class MobileNavigation {
     this.setActiveLink();
   }
 
+  // Check if user is logged in
+  isLoggedIn() {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  }
+
+  // Update login/logout button
+  updateAuthButton() {
+    const loginLink = document.querySelector('a[href="login.html"]');
+    if (loginLink) {
+      if (this.isLoggedIn()) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.classList.add('logout-btn');
+      } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = 'login.html';
+        loginLink.classList.remove('logout-btn');
+      }
+    }
+  }
+
+  // Handle logout with confirmation
+  handleLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+      // Check if Firebase auth is available
+      if (typeof handleLogout === 'function') {
+        handleLogout(); // Use the Firebase logout function from login.js
+      } else {
+        // Fallback: clear localStorage and redirect
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        window.location.href = 'index.html';
+      }
+    }
+  }
+
   createMobileOverlay() {
     const overlay = document.createElement('div');
     overlay.className = 'mobile-overlay';
-    // Alternative Quick Fix: Set overlay styles to prevent blocking clicks when inactive
     overlay.style.cssText = `
       display: none;
       position: fixed;
@@ -110,7 +136,6 @@ class MobileNavigation {
     this.menuToggle.classList.toggle('active');
     this.navMenu.classList.toggle('active');
     
-    // Alternative Quick Fix: Only show overlay when menu is active
     if (this.navMenu.classList.contains('active')) {
       this.mobileOverlay.style.display = 'block';
       setTimeout(() => {
@@ -134,7 +159,6 @@ class MobileNavigation {
     this.menuToggle.classList.remove('active');
     this.navMenu.classList.remove('active');
     
-    // Alternative Quick Fix: Hide overlay completely
     this.mobileOverlay.style.opacity = '0';
     setTimeout(() => {
       this.mobileOverlay.style.display = 'none';
@@ -153,8 +177,8 @@ class MobileNavigation {
       // Remove active class from all links first
       link.classList.remove('active');
       
-      // Add active class to current page link
-      if (linkPage === currentPage) {
+      // Add active class to current page link (skip logout button)
+      if (linkPage === currentPage && !link.classList.contains('logout-btn')) {
         link.classList.add('active');
       }
       
@@ -166,6 +190,21 @@ class MobileNavigation {
   }
 }
 
+// Hero Animation Class
+class HeroAnimation {
+  constructor() {
+    this.heroText = document.querySelector('.hero-content h1');
+    if (this.heroText) {
+      this.fadeIn();
+    }
+  }
+
+  fadeIn() {
+    this.heroText.style.transition = 'all 1.5s ease';
+    this.heroText.style.opacity = 1;
+  }
+}
+
 // Fix for Explore Now button and other external links
 class LinkHandler {
   constructor() {
@@ -173,9 +212,6 @@ class LinkHandler {
   }
 
   init() {
-    // Remove any global click handlers that might interfere
-    // The navigation class now handles menu closing properly
-    
     // Ensure all buttons and links work normally
     document.addEventListener('click', (e) => {
       const target = e.target;
@@ -237,11 +273,11 @@ class PageLoader {
 
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Mobile Navigation (includes login/logout functionality)
+  new MobileNavigation();
+  
   // Initialize Hero Animation
   new HeroAnimation();
-  
-  // Initialize Mobile Navigation
-  new MobileNavigation();
   
   // Initialize Link Handler (fix for Explore Now button)
   new LinkHandler();
@@ -255,9 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Discover Antipolo - All systems loaded!');
 });
 
-// Additional utility functions
+// Utility functions
 const AppUtils = {
-  // Debounce function for resize events
   debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -270,37 +305,10 @@ const AppUtils = {
     };
   },
 
-  // Check if device is mobile
   isMobileDevice() {
     return window.innerWidth <= 768;
   },
 
-  // Add loading state to buttons
-  addButtonLoader(button) {
-    const originalText = button.innerHTML;
-    button.innerHTML = '<span class="loading-spinner"></span> Loading...';
-    button.disabled = true;
-    
-    return {
-      reset: () => {
-        button.innerHTML = originalText;
-        button.disabled = false;
-      }
-    };
-  },
-
-  // Format date for comments/memories
-  formatDate(date) {
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  },
-
-  // Show notification message
   showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;

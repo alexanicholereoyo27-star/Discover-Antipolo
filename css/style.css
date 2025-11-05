@@ -2954,3 +2954,409 @@ footer {
   color: #004f32;
   font-size: 1em;
 }
+
+/* Media Queries for About and Shopping Pages */
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  /* Navigation */
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 80px 2rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 999;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .nav-menu.active {
+    right: 0;
+  }
+  
+  .nav-menu li {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .nav-menu a {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+  }
+}
+
+/* About Page Responsive */
+@media (max-width: 768px) {
+  /* Hero Section */
+  .hero-bg {
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* About Content */
+  .about-container {
+    padding: 2rem 1rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Team Memories Collage */
+  .team-section {
+    padding: 2rem 1rem;
+  }
+  
+  .team-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .collage-desc {
+    text-align: center;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .collage-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .collage-item.tall {
+    grid-row: span 1;
+  }
+  
+  .collage-item.wide {
+    grid-column: span 2;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .contact-links {
+    text-align: center;
+  }
+  
+  .contact-links p {
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* Shopping Page Responsive */
+@media (max-width: 768px) {
+  /* Hero Section */
+  .shop-hero {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .shop-hero h2 {
+    font-size: 1.5rem;
+  }
+  
+  .shop-hero p {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+  
+  /* Category Titles */
+  .category-title {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+    padding: 0 1rem;
+  }
+  
+  /* Product Grid */
+  .shop-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .product {
+    padding: 1rem;
+  }
+  
+  .product img {
+    height: 120px;
+  }
+  
+  .product h3 {
+    font-size: 0.9rem;
+    min-height: 2.5rem;
+  }
+  
+  .product p {
+    font-size: 1rem;
+  }
+  
+  .add-cart {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Cart Section */
+  .cart-section {
+    padding: 2rem 1rem;
+  }
+  
+  .cart-section h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  
+  /* Cart Table - Mobile Friendly */
+  #cart-table {
+    font-size: 0.8rem;
+  }
+  
+  #cart-table th,
+  #cart-table td {
+    padding: 0.5rem 0.3rem;
+  }
+  
+  /* Currency Converter */
+  .converter {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .converter label {
+    margin-bottom: 0.5rem;
+  }
+  
+  #currency-select {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  #convert-btn {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  /* Navigation */
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  /* About Page */
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .collage-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .collage-item.wide {
+    grid-column: span 1;
+  }
+  
+  /* Shopping Page */
+  .shop-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .product {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  /* Cart Table - Stack on very small screens */
+  #cart-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  #cart-table thead {
+    display: none;
+  }
+  
+  #cart-table tbody, 
+  #cart-table tr, 
+  #cart-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  #cart-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  #cart-table td {
+    text-align: right;
+    padding: 0.5rem;
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #cart-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+  }
+}
+
+/* Tablet Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* About Page */
+  .collage-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Shopping Page */
+  .shop-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Footer Responsive */
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  
+  footer a {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+}
+
+/* Logout button styling */
+.logout-btn {
+  color: #e74c3c !important;
+  font-weight: 600 !important;
+}
+
+.logout-btn:hover {
+  color: #c0392b !important;
+  background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Mobile responsive adjustments for logout */
+@media (max-width: 768px) {
+  .logout-btn {
+      border: 1px solid #e74c3c !important;
+      border-radius: 5px;
+      margin-top: 1rem !important;
+  }
+}
+
+/* Login Success Styles */
+.login-success {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.login-success h2 {
+  color: #2ecc71;
+  margin-bottom: 1rem;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #2ecc71;
+  color: white;
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-primary:hover {
+  background: #27ae60;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+}
+
+/* Mobile responsive for login success */
+@media (max-width: 768px) {
+  .success-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 200px;
+    text-align: center;
+  }
+}
