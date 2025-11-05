@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Antipolo | Pasalubong Estimator</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/shopping.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Discover <span>Antipolo</span></div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destination.html">Destinations</a></li>
+        <li><a href="hospital.html">Hospitals</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="shopping.html" class="active">Pasalubong Estimator</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="shop-hero">
+    <h2>🛍️ Pasalubong & Local Product Estimator</h2>
+    <p>Plan your Antipolo shopping budget — estimate total costs for delicacies, souvenirs, and more!</p>
+  </section>
+
+  <!-- 🍬 Local Delicacies -->
+  <h3 class="category-title">🍬 Local Delicacies</h3>
+  <section class="shop-container">
+    <div class="product" data-name="Suman sa Ibos" data-price="50" data-category="Delicacies">
+      <img src="images/suman.jpg" alt="Suman sa Ibos">
+      <h3>Suman sa Ibos (per pack)</h3>
+      <p>₱50</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Kasoy" data-price="180" data-category="Delicacies">
+      <img src="images/kasoy.jpg" alt="Kasoy">
+      <h3>Kasoy (200g)</h3>
+      <p>₱180</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Mango" data-price="120" data-category="Delicacies">
+      <img src="images/mango.jpg" alt="Mango">
+      <h3>Antipolo Mango (per kilo)</h3>
+      <p>₱120</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Coco Jam" data-price="90" data-category="Delicacies">
+      <img src="images/coco.jpg" alt="Coco Jam">
+      <h3>Coco Jam (Jar)</h3>
+      <p>₱90</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- ☕ Local Beverages -->
+  <h3 class="category-title">☕ Local Beverages</h3>
+  <section class="shop-container">
+    <div class="product" data-name="Antipolo Coffee" data-price="250" data-category="Beverages">
+      <img src="images/coffee.jpg" alt="Coffee">
+      <h3>Antipolo Coffee (250g)</h3>
+      <p>₱250</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Tablea Chocolate" data-price="200" data-category="Beverages">
+      <img src="images/tablea.jpg" alt="Tablea Chocolate">
+      <h3>Tablea Chocolate (100g)</h3>
+      <p>₱200</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Lemongrass Tea" data-price="150" data-category="Beverages">
+      <img src="images/tea.jpg" alt="Lemongrass Tea">
+      <h3>Lemongrass Tea (Box)</h3>
+      <p>₱150</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- 🎁 Souvenirs -->
+  <h3 class="category-title">🎁 Souvenirs & Handicrafts</h3>
+  <section class="shop-container">
+    <div class="product" data-name="Souvenir Keychain" data-price="50" data-category="Souvenirs">
+      <img src="images/keychain.jpg" alt="Souvenir Keychain">
+      <h3>Souvenir Keychain</h3>
+      <p>₱50</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Woven Handbag" data-price="300" data-category="Souvenirs">
+      <img src="images/wovenbag.jpg" alt="Woven Handbag">
+      <h3>Antipolo Woven Bag</h3>
+      <p>₱300</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Ref Magnet" data-price="70" data-category="Souvenirs">
+      <img src="images/magnet.jpg" alt="Ref Magnet">
+      <h3>Antipolo Ref Magnet</h3>
+      <p>₱70</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="Hand Fan" data-price="80" data-category="Souvenirs">
+      <img src="images/fan.jpg" alt="Hand Fan">
+      <h3>Bamboo Hand Fan</h3>
+      <p>₱80</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </section>
+
+  <section class="cart-section">
+    <h2>🧾 Your Estimated Purchases</h2>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price (₱)</th>
+          <th>Qty</th>
+          <th>Subtotal (₱)</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="cart-total">
+      <h3>Total Estimate: ₱<span id="total-price">0.00</span></h3>
+    </div>
+
+    <!-- Currency Conversion -->
+    <div class="converter">
+      <label for="currency-select">Convert Total To:</label>
+      <select id="currency-select">
+        <option value="PHP">PHP (₱)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="JPY">JPY (¥)</option>
+      </select>
+      <button id="convert-btn">Convert</button>
+      <p id="converted-total"></p>
+    </div>
+  </section>
+
+</body>
+</html>

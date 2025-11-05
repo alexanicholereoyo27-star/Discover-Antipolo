@@ -316,53 +316,50 @@ footer {
 }
 
 /* --- Spot Banner (Animated Zoom Effect) --- */
+/* === SPOT BANNER === */
 .spot-banner {
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  height: 550px; /* Increased height for a more square look */
-  max-width: 900px; /* Optional: limits width so it’s balanced */
-  margin: 0 auto; /* Centers the image */
-  border-radius: 25px;
   position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 25px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  /* 🖼 Smooth zoom animation */
-  animation: slowZoom 20s ease-in-out infinite alternate;
 }
 
-/* Zoom animation keyframes */
-@keyframes slowZoom {
-  0% { background-size: 100%; }
-  100% { background-size: 110%; }
+/* Image styling - ensures only ONE clean image fits perfectly */
+.spot-banner img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 25px;
 }
 
-/* Hover effect for a more dynamic feel */
-.spot-banner:hover {
-  transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  filter: brightness(1.05);
+/* Dark overlay for readability */
+.spot-banner::after {
+  content: "none";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:  rgba(0, 0, 0, 0.10);
+  transition: background 0.3s ease;
 }
 
-/* 🟡 Optional: make text pop better without darkening image */
+
+
+/* Title styling */
 .spot-title {
   position: absolute;
   bottom: 20px;
   left: 30px;
   color: #fff;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-  background: rgba(0, 0, 0, 0.25); /* semi-transparent box behind text */
-  padding: 10px 14px;
-  border-radius: 8px;
-  backdrop-filter: blur(2px);
-  transition: 0.3s ease-in-out;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.spot-title:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
 
 /* Photo source under banner */
 .photo-source-centered {
@@ -1021,14 +1018,14 @@ footer {
 }
 /* 🌄 Developers' Memories Collage Section */
 .memories-collage {
-  background: #cdf0cd;
+  background: rgba(0, 0, 0, 0.5);
   padding: 60px 20px;
   text-align: center;
   margin-top: 60px;
 }
 
 .collage-desc {
-  color: #444;
+  color: #8ce8d1;
   font-size: 1em;
   max-width: 700px;
   margin: 0 auto 30px;
@@ -2770,4 +2767,190 @@ footer {
 }
 .register-text {
   color: #0f100f !important; /* make all text white */
+}
+/* === SHOPPING PAGE === */
+.shop-hero {
+  text-align: center;
+  margin: 40px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shop-hero h2 {
+  color: #004f32;
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+
+.shop-hero p {
+  color: #444;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.category-title {
+  width: 90%;
+  margin: 40px auto 10px;
+  color: #004f32;
+  font-size: 1.3em;
+  font-weight: 700;
+  border-left: 5px solid #007f5f;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shop-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px auto;
+  width: 90%;
+}
+
+.product {
+  background: #fff;
+  border-radius: 15px;
+  width: 220px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product h3 {
+  color: #004f32;
+  font-size: 1em;
+  margin: 10px 0 5px;
+}
+
+.product p {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.add-cart {
+  background-color: #007f5f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.3s ease;
+}
+
+.add-cart:hover {
+  background-color: #005a3a;
+}
+
+/* === CART === */
+.cart-section {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cart-section h2 {
+  color: #004f32;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-table th,
+#cart-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+#cart-table th {
+  background-color: #f8f8f8;
+  color: #004f32;
+}
+
+.qty-input {
+  width: 50px;
+  text-align: center;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 15px;
+  font-size: 1.1em;
+  color: #004f32;
+  font-weight: 600;
+}
+
+/* === CURRENCY CONVERTER === */
+.converter {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.converter label {
+  font-weight: 600;
+  color: #004f32;
+}
+
+.converter select,
+.converter button {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+.converter button {
+  background: #007f5f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.converter button:hover {
+  background: #005a3a;
+}
+
+#converted-total {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #004f32;
+  font-size: 1em;
 }
