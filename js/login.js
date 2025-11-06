@@ -14,10 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const googleLogin = document.getElementById("googleLogin");
   const loginContainer = document.querySelector(".login-container");
   const loading = document.getElementById("loading");
-  // Prevent flicker: reveal page only after setup
-  document.body.style.visibility = "visible";
-  document.body.style.opacity = "1";
-
 
   // ✅ Legal Agreement Modal Logic
   const legalModal = document.getElementById('legalModal');
