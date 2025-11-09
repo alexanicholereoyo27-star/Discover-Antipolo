@@ -4,24 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Discover Antipolo | Memories</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="https://unpkg.com/scrollreveal"></script>
+  <link rel="stylesheet" href="./css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
 <body class="memories-page">
+  <!-- ✅ Navigation -->
   <header>
     <nav class="navbar">
       <div class="logo">Discover <span>Antipolo</span></div>
-      
-      <!-- Hamburger Menu Button -->
+    
       <button class="menu-toggle" aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      
-      <!-- Navigation Menu -->
+
       <ul class="nav-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="destination.html">View Destination</a></li>
@@ -30,24 +29,24 @@
         <li><a href="events.html">Events</a></li>
         <li><a href="shopping.html">Pasalubong Estimator</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="login.html" id="loginNav">Login</a></li>
+        <li><a href="#" id="logoutNav" style="display:none;">Logout</a></li>
       </ul>
-      
-      <!-- Mobile Overlay -->
       <div class="mobile-overlay"></div>
     </nav>
   </header>
 
+  <!-- ✅ Hero Section -->
   <section class="hero-bg">
-    <h2 class="page-title"> 📸 Share Your Antipolo Memories</h2>
-    <p class="page-subtitle">Choose a destination and upload your memorable photo from Antipolo!</p>
+    <h2 class="page-title">📸 Share Your Antipolo Memories</h2>
+    <p class="page-subtitle">Upload your best moments and inspire others to explore Antipolo!</p>
   </section>
 
+  <!-- ✅ Upload Section -->
   <section class="upload-section">
     <div class="upload-box">
+      <div id="authStatus" style="text-align:center; margin-bottom: 15px;"></div>
       <h3>💾 Upload a Memory</h3>
-
-
       <form id="uploadForm">
         <select id="spotSelect" required>
           <option value="">🎯 Select a Tourist Spot</option>
@@ -62,7 +61,6 @@
           <option value="Cloud 9">Cloud 9</option>
           <option value="Yellow Lantern Cafe">Yellow Lantern Café</option>
         </select>
-
         <input type="file" id="photoInput" accept="image/*" required />
         <input type="text" id="captionInput" placeholder="Write a short caption..." required />
         <button type="submit" class="btn upload-btn">Upload</button>
@@ -70,27 +68,66 @@
     </div>
   </section>
 
+  <!-- ✅ Memories Gallery -->
   <section class="memories-gallery">
     <h3 class="gallery-title">🌄 Shared Memories by Destination</h3>
-    <div id="memoriesContainer">
-    </div>
+    <div id="memoriesContainer" class="masonry-grid"></div>
   </section>
 
+  <!-- ✅ Fullscreen Modal -->
+  <div id="imageModal" class="modal hidden">
+    <span class="close-modal">&times;</span>
+    <img id="modalImg" class="modal-content" />
+    <div id="modalCaption" class="modal-caption"></div>
+  </div>
+
+  <!-- ✅ Footer -->
   <footer>
     <p>© 2025 Discover Antipolo | All Rights Reserved</p>
-    <p>
-      <a href="privacy.html"> Privacy Policy</a> | 
-      <a href="terms.html"> Terms & Conditions</a>
-    </p>
   </footer>
 
-  <!-- Main app navigation -->
-  <script src="js/app.js"></script>
-  
-  <!-- Firebase -->
+  <!-- ✅ Firebase 8.10.0 -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- ✅ Scripts -->
   <script src="js/memories.js"></script>
+  <script src="js/app.js"></script>
+  
+
+  <!-- ✅ Logout control (consistent with login page) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (!firebase.apps.length) return; // make sure firebase is loaded
+
+      const auth = firebase.auth();
+      const loginLink = document.getElementById("loginNav");
+      const logoutLink = document.getElementById("logoutNav");
+
+      // detect auth state for navbar
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          loginLink.style.display = "none";
+          logoutLink.style.display = "inline";
+        } else {
+          loginLink.style.display = "inline";
+          logoutLink.style.display = "none";
+        }
+      });
+   
+      // logout click event
+      logoutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        auth.signOut().then(() => {
+          alert("You have been logged out.");
+          window.location.href = "login.html";
+        });
+      });
+    });
+  </script>
+ 
+ 
 </body>
 </html>
+

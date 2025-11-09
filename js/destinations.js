@@ -211,6 +211,113 @@ class DestinationInteractions {
   }
 
   // ⭐ Ratings
+initRatings() {
+  document.querySelectorAll('.stars').forEach(group => {
+    const stars = group.querySelectorAll('.star');
+    const result = group.parentElement.querySelector('.rating-result');
+    const itemName = group.closest('.spot-section').querySelector('h2').textContent.trim();
+
+    // ✅ Load ratings immediately on page load
+    this.loadRatings(itemName, group.parentElement);
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        console.log("⭐ Star clicked by:", this.currentUser?.name);
+        
+        if (!this.isLoggedIn()) {
+          alert("Please login first!");
+          return;
+        }
+
+        const val = star.dataset.value;
+        console.log(`⭐ ${this.currentUser.name} rating: ${val} stars`);
+        
+        // Update UI immediately
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < val; i++) stars[i].classList.add('active');
+        result.textContent = `You rated this ${val} ★`;
+
+        // ✅ Pass the correct parent section to saveRating()
+        this.saveRating(itemName, val, group.parentElement);
+      });
+    });
+  });
+}
+
+async saveRating(itemName, rating, ratingSection) {
+  if (!this.db || !this.isLoggedIn()) {
+    console.error("❌ Cannot save rating - no DB or not logged in");
+    return;
+  }
+
+  try {
+    const sanitizedKey = this.sanitizeKey(itemName);
+    const userRatingRef = this.db.ref(`ratings/spots/${sanitizedKey}/userRatings/${this.currentUser.id}`);
+    
+    await userRatingRef.set({
+      value: parseInt(rating),
+      timestamp: Date.now(),
+      itemName: itemName,
+      userName: this.currentUser.name,
+      userEmail: this.currentUser.email || 'no-email',
+      userId: this.currentUser.id
+    });
+    
+    console.log("✅ Rating saved successfully");
+    // ✅ Refresh only this spot's rating
+    this.loadRatings(itemName, ratingSection);
+  } catch (error) {
+    console.error("❌ Rating save error:", error);
+  }
+}
+
+loadRatings(itemName, ratingSection) {
+  if (!this.db) return;
+
+  const sanitizedKey = this.sanitizeKey(itemName);
+  const ratingsRef = this.db.ref(`ratings/spots/${sanitizedKey}/userRatings`);
+  
+  ratingsRef.on('value', (snapshot) => {
+    const ratings = snapshot.val();
+    let total = 0, count = 0;
+
+    if (ratings) {
+      Object.values(ratings).forEach(rating => {
+        total += rating.value;
+        count++;
+      });
+
+      const average = count > 0 ? (total / count).toFixed(1) : 0;
+      
+      let ratingStats = ratingSection.querySelector('.rating-stats');
+      if (!ratingStats) {
+        ratingStats = document.createElement('div');
+        ratingStats.className = 'rating-stats';
+        ratingSection.appendChild(ratingStats);
+      }
+      
+      ratingStats.innerHTML = `<strong>${average} ★</strong> (${count} ratings)`;
+
+      if (this.currentUser && ratings[this.currentUser.id]) {
+        const userRating = ratings[this.currentUser.id].value;
+        const result = ratingSection.querySelector('.rating-result');
+        if (result) {
+          result.textContent = `You rated this ${userRating} ★`;
+        }
+
+        const stars = ratingSection.querySelectorAll('.star');
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < userRating; i++) stars[i].classList.add('active');
+      }
+    } else {
+      const ratingStats = ratingSection.querySelector('.rating-stats');
+      if (ratingStats) ratingStats.innerHTML = `<strong>0 ★</strong> (0 ratings)`;
+    }
+  });
+}
+
+// 🚫 Old rating functions below are now replaced
+
   initRatings() {
     document.querySelectorAll('.stars').forEach(group => {
       const stars = group.querySelectorAll('.star');
