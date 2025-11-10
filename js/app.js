@@ -1,3 +1,19 @@
+// Firebase Configuration (shared across all pages)
+const firebaseConfig = {
+  apiKey: "AIzaSyD9NfWr49Q0BKvVo8cGs_IZGvzWYAuCVKw",
+  authDomain: "discoverantipolo.firebaseapp.com",
+  databaseURL: "https://discoverantipolo-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  projectId: "discoverantipolo",
+  storageBucket: "discoverantipolo.firebasestorage.app",
+  messagingSenderId: "49102168673",
+  appId: "1:49102168673:web:a65f8f4c5fed1e594ac020"
+};
+
+// Initialize Firebase if not already initialized
+if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 // Mobile Navigation Class - UPDATED WITH LOGIN/LOGOUT FUNCTIONALITY
 class MobileNavigation {
   constructor() {
@@ -6,7 +22,7 @@ class MobileNavigation {
     this.mobileOverlay = document.querySelector('.mobile-overlay');
     this.navLinks = document.querySelectorAll('.nav-menu li a');
     this.isMenuOpen = false;
-    
+
     this.init();
   }
 
@@ -112,14 +128,21 @@ class MobileNavigation {
   // Handle logout with confirmation
   handleLogout() {
     if (confirm('Are you sure you want to log out?')) {
-      // Check if Firebase auth is available
-      if (typeof handleLogout === 'function') {
-        handleLogout(); // Use the Firebase logout function from login.js
+      // Clear localStorage
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userName');
+
+      // Sign out from Firebase if available
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        firebase.auth().signOut().then(() => {
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          console.error('Firebase signout error:', error);
+          window.location.href = 'index.html';
+        });
       } else {
-        // Fallback: clear localStorage and redirect
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('userName');
+        // Fallback if Firebase not loaded
         window.location.href = 'index.html';
       }
     }

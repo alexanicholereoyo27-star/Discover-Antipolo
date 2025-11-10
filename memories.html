@@ -120,6 +120,10 @@
       logoutLink.addEventListener("click", (e) => {
         e.preventDefault();
         auth.signOut().then(() => {
+          // Clear localStorage items
+          localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('userEmail');
+          localStorage.removeItem('userName');
           alert("You have been logged out.");
           window.location.href = "login.html";
         });
