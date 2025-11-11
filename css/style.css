@@ -2382,7 +2382,7 @@ footer {
   }
 }
 .memories-page {
-  color: #f3f8e7 !important; /* make all text white */
+  color: #439034!important; /* make all text white */
 }
 
 .destination-page {
@@ -3045,21 +3045,12 @@ footer {
   }
 }
 
-/* Logout button styling */
-.logout-btn {
-  color: #e74c3c !important;
-  font-weight: 600 !important;
-}
 
-.logout-btn:hover {
-  color: #f02929 !important;
-  background-color: rgba(231, 76, 60, 0.1) !important;
-}
+
 
 /* Mobile responsive adjustments for logout */
 @media (max-width: 768px) {
   .logout-btn {
-      border: 1px solid #e74c3c !important;
       border-radius: 5px;
       margin-top: 1rem !important;
   }
@@ -3184,7 +3175,7 @@ footer {
 }
 
 .memory-info small {
-  color: #a5f1af;
+  color: #439034;
   font-size: 12px;
 }
 
