@@ -196,11 +196,4 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("⚠️ Modal elements not found — skipping modal setup");
   }
 
-  // ✅ Cleanup old sessions on logout
-  window.addEventListener("beforeunload", () => {
-    if (!auth.currentUser) {
-      sessionStorage.clear();
-      localStorage.clear();
-    }
-  });
 });
